@@ -9,5 +9,5 @@ class CustomUserAdmin(UserAdmin):
     list_display = ('username', 'email', 'is_staff', 'is_active')
     
     fieldsets = UserAdmin.fieldsets + (
-        ('Extra Profile Info', {'fields': ('avatar_url', 'bio')}),
+        ('Extra Profile Info', {'fields': ('avatar_url', 'profile_pic')}),
     )

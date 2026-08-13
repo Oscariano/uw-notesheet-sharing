@@ -9,6 +9,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
 
     avatar_url = models.URLField(max_length=500, blank=True, null=True)
+    profile_pic = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
 
     def __str__(self):
         return self.username or self.email
