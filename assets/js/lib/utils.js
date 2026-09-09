@@ -1,0 +1,6 @@
+// Small shared helpers used across pages.
+
+// Join conditional class names, skipping falsy values.
+export function cn(...classes) {
+  return classes.filter(Boolean).join(' ');
+}

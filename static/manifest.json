@@ -1,8 +1,17 @@
 {
-  "assets/js/index.js": {
-    "file": "js/index-bundle.js",
-    "name": "index",
-    "src": "assets/js/index.js",
+  "assets/js/entries/dashboard.jsx": {
+    "file": "js/dashboard-bundle.js",
+    "name": "dashboard",
+    "src": "assets/js/entries/dashboard.jsx",
+    "isEntry": true
+  },
+  "assets/styles/style.css": {
+    "file": "css/style.css",
+    "name": "style",
+    "names": [
+      "style.css"
+    ],
+    "src": "assets/styles/style.css",
     "isEntry": true
   }
 }
