@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Sidebar from '@/pages/dashboard/components/Sidebar';
-import { tabs, DEFAULT_TAB_ID } from '@/pages/dashboard/tabs';
+import Sidebar from '@/components/ui/Sidebar';
+import { tabs, DEFAULT_TAB_ID, type TabId } from '@/pages/dashboard/tabs';
 
 export default function DashboardPage() {
-  const [activeTabId, setActiveTabId] = useState(DEFAULT_TAB_ID);
+  const [activeTabId, setActiveTabId] = useState<TabId>(DEFAULT_TAB_ID);
 
   const activeTab = tabs.find((tab) => tab.id === activeTabId) ?? tabs[0];
   const ActiveComponent = activeTab.Component;

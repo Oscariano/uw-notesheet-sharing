@@ -1,6 +1,13 @@
+interface Note {
+  id: number;
+  title: string;
+  author: string;
+  course: string;
+}
+
 // Main note-sharing view. Placeholder data for now — wire to a Django JSON
 // endpoint via `@/lib/api` once the backend exposes notesheets.
-const SAMPLE_NOTES = [
+const SAMPLE_NOTES: Note[] = [
   { id: 1, title: 'CS 240 - Data Structures', author: 'alice', course: 'CS 240' },
   { id: 2, title: 'MATH 239 - Combinatorics', author: 'bob', course: 'MATH 239' },
   { id: 3, title: 'STAT 230 - Probability', author: 'carol', course: 'STAT 230' },

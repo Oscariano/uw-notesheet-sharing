@@ -1,6 +1,8 @@
 // Small shared helpers used across pages.
 
+export type ClassValue = string | false | null | undefined;
+
 // Join conditional class names, skipping falsy values.
-export function cn(...classes) {
+export function cn(...classes: ClassValue[]): string {
   return classes.filter(Boolean).join(' ');
 }

@@ -1,9 +1,7 @@
 {
-  "assets/js/entries/dashboard.jsx": {
-    "file": "js/dashboard-bundle.js",
-    "name": "dashboard",
-    "src": "assets/js/entries/dashboard.jsx",
-    "isEntry": true
+  "_Sidebar-Bj7xEaVv.js": {
+    "file": "assets/Sidebar-Bj7xEaVv.js",
+    "name": "Sidebar"
   },
   "assets/styles/style.css": {
     "file": "css/style.css",
@@ -13,5 +11,23 @@
     ],
     "src": "assets/styles/style.css",
     "isEntry": true
+  },
+  "assets/ts/entries/dashboard.tsx": {
+    "file": "js/dashboard-bundle.js",
+    "name": "dashboard",
+    "src": "assets/ts/entries/dashboard.tsx",
+    "isEntry": true,
+    "imports": [
+      "_Sidebar-Bj7xEaVv.js"
+    ]
+  },
+  "assets/ts/entries/home.tsx": {
+    "file": "js/home-bundle.js",
+    "name": "home",
+    "src": "assets/ts/entries/home.tsx",
+    "isEntry": true,
+    "imports": [
+      "_Sidebar-Bj7xEaVv.js"
+    ]
   }
 }

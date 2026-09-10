@@ -1,4 +1,10 @@
-export default function SidebarItem({ label, isActive, onClick }) {
+interface SidebarItemProps {
+  label: string;
+  isActive: boolean;
+  onClick: () => void;
+}
+
+export default function SidebarItem({ label, isActive, onClick }: SidebarItemProps) {
   const base =
     'rounded-md px-3 py-2 text-left text-sm font-medium transition-colors';
   const state = isActive
