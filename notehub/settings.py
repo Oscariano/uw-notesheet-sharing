@@ -46,7 +46,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'account.User'
 
 # Application definition
 
@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'django_typescript_api',
     'django_vite',
     'notesheet_board',
-    'accounts',
+    'account',
     'rest_framework',
     'api',
     'corsheaders',
@@ -200,3 +200,5 @@ REST_KNOX = {
     'TOKEN_LIMIT_PER_USER': None,
     'AUTO_REFRESH': False,
 }
+
+LOGIN_URL = '/account/login'
