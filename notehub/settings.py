@@ -10,12 +10,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+from dotenv import load_dotenv
 from pathlib import Path
 import os
 import dj_database_url
-from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()
+
+def get_quarter_from_month(month):
+    match month:
+        case month if month >= 9:
+            return "Autumn"
+        case month if month >= 1 and month < 4:
+            return "Winter"
+        case month if month >= 4 and month < 7:
+            return "Spring"
+        case month if month >= 7 and month < 9:
+            return "Summer"
+        case _: 
+            return "Autumn"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,12 +57,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_typescript_api',
     'django_vite',
     'notesheet_board',
-    'accounts'
+    'accounts',
+    'rest_framework',
+    'api',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -159,3 +178,12 @@ DJANGO_VITE = {
         'dev_mode': True
     }
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+CURRENT_YEAR = datetime.now().year
+
+CURRENT_QUARTER = get_quarter_from_month(datetime.now().month)

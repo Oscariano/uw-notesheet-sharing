@@ -1,26 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Sidebar from '@/components/ui/Sidebar';
-import { tabs, DEFAULT_TAB_ID, type TabId } from '@/pages/dashboard/tabs';
-import MenuIcon from '~icons/boxicons/menu';
+import Header from '@/pages/home/components/Header';
+import Card from '@/pages/home/components/Card';
+import { tabs, DEFAULT_TAB_ID, type TabId } from '@/pages/home/types/tabs';
+import { type Note } from './types/note';
 
 export default function Home() {
   const [activeTabId, setActiveTabId] = useState<TabId>(DEFAULT_TAB_ID);
-  // Nothing toggles the sidebar yet; the menu icon is not wired up.
-  const [expandSidebar, _setExpandSidebar] = useState(false);
+  const [expandSidebar, _setExpandSidebar] = useState<boolean>(false);
+  const [note, setNote] = useState<Note[]>();
 
   const activeTab = tabs.find((tab) => tab.id === activeTabId) ?? tabs[0];
-  const ActiveComponent = activeTab.Component;
+
+  useEffect(() => {
+    fetch('http://localhost:8000/api/notesheets/?format=json')
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to load note');
+        return res.json();
+      })
+      .then((data)=>{setNote(data)})
+      .catch((err) => {
+        console.error(err)
+      });
+  });
 
   return (
-    <div className="flex min-h-screen bg-slate-100 text-slate-900">
-      <MenuIcon />
-      <Sidebar activeTabId={activeTabId} onSelectTab={setActiveTabId} expandSidebar={expandSidebar}/>
-      <main className="flex-1 overflow-y-auto p-8">
-        <header className="mb-6">
-          <h1 className="text-2xl font-semibold">{activeTab.label}</h1>
-        </header>
-        <ActiveComponent />
-      </main>
-    </div>
+    <main className="flex flex-col min-h-screen">
+      <Header expandSidebar={expandSidebar} onCloseSidebar={_setExpandSidebar}/>
+      <Sidebar activeTabId={activeTabId} onSelectTab={setActiveTabId} expandSidebar={expandSidebar} onCloseSidebar={_setExpandSidebar}/>
+      <section className="px-4 mt-20 flex flex-col gap-4">
+        { note && (
+          note.map((note) => (
+            <Card note={note}/>
+          ))
+        )}
+      </section>
+    </main>
   );
 }
+
+//https://www.youtube.com/watch?v=TmsD8QExZ84
