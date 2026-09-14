@@ -28,6 +28,7 @@ export default function Home() {
     <main className="flex flex-col min-h-screen">
       <Header expandSidebar={expandSidebar} onCloseSidebar={_setExpandSidebar}/>
       <Sidebar activeTabId={activeTabId} onSelectTab={setActiveTabId} expandSidebar={expandSidebar} onCloseSidebar={_setExpandSidebar}/>
+      <div className={`fixed transition-all duration-300 w-full h-[100vh] pointer-events-none ${expandSidebar ? 'bg-black/10 backdrop-blur-sm' : 'w-0 h-0'}`}></div>
       <section className="px-4 mt-20 flex flex-col gap-4">
         { note && (
           note.map((note) => (

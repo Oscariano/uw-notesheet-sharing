@@ -10,10 +10,10 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ activeTabId, onSelectTab, expandSidebar, onCloseSidebar }: SidebarProps) {
-  if (expandSidebar !== true) return null;
-
   return (
-    <aside className="px-4 py-4 flex w-80 h-screen flex-col border-r-4 border-[#ccbc96] fixed bg-[#efe8d6] justify-between">
+    <aside className={`px-4 py-4 flex h-screen flex-col border-r-4 border-[#ccbc96] fixed bg-[#efe8d6] justify-between transition-all duration-300 ease-in-out z-10 ${
+        expandSidebar ? 'w-80 opacity-100' : 'w-0 px-0 opacity-0 pointer-events-none'
+      }`}>
       <section className="flex flex-col">
         <CrossIcon onClick={()=> onCloseSidebar(false)} style={{color: "#3b362f", fontSize: "0.6em"}} className='self-end'/>
         <h1 className='font-bold text-3xl mb-4'>
