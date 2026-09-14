@@ -8,6 +8,7 @@ dependencies = [
     "dj-database-url>=3.1.2",
     "django>=6.1",
     "django-cors-headers>=4.9.0",
+    "django-rest-knox>=5.1.0",
     "django-supabase-storage>=1.0.1",
     "django-vite>=3.1.0",
     "djangorestframework>=3.18.1",

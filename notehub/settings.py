@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 import os
 import dj_database_url
-from datetime import datetime
+from datetime import datetime, timedelta
 
 load_dotenv()
 
@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'corsheaders',
+    'knox'
 ]
 
 MIDDLEWARE = [
@@ -187,3 +188,15 @@ CORS_ALLOWED_ORIGINS = [
 CURRENT_YEAR = datetime.now().year
 
 CURRENT_QUARTER = get_quarter_from_month(datetime.now().month)
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'knox.auth.TokenAuthentication',
+    ],
+}
+
+REST_KNOX = {
+    'TOKEN_TTL': timedelta(hours=10),
+    'TOKEN_LIMIT_PER_USER': None,
+    'AUTO_REFRESH': False,
+}
