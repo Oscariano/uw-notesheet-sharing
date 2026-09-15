@@ -10,7 +10,6 @@ dependencies = [
     "django-cors-headers>=4.9.0",
     "django-rest-knox>=5.1.0",
     "django-supabase-storage>=1.0.1",
-    "django-vite>=3.1.0",
     "djangorestframework>=3.18.1",
     "pillow>=12.3.0",
     "psycopg>=3.3.4",

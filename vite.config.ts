@@ -13,30 +13,19 @@ export default defineConfig({
       jsx: 'react',
     })
   ],
-  base: '/static/', // This should match Django's settings.STATIC_URL
   resolve: {
     alias: {
-      '@': path.resolve(import.meta.dirname, './assets/ts'),
+      '@': path.resolve(import.meta.dirname, './frontend/'),
     },
   },
   build: {
     // Where Vite will save its output files.
     // This should be something in your settings.STATICFILES_DIRS
     outDir: path.resolve(import.meta.dirname, './static'),
-    emptyOutDir: false, // Preserve the outDir to not clobber Django's other files.
-    manifest: "manifest.json",
-    rollupOptions: {
-      // One entry per Django page (MPA), plus the shared global stylesheet.
-      input: {
-        'dashboard': path.resolve(import.meta.dirname, './assets/ts/entries/dashboard.tsx'),
-        'home': path.resolve(import.meta.dirname, './assets/ts/entries/home.tsx'),
-        'style': path.resolve(import.meta.dirname, './assets/styles/style.css'),
-      },
-      output: {
-        // Output JS bundles to js/ directory with -bundle suffix
-        entryFileNames: `js/[name]-bundle.js`,
-        assetFileNames: `css/[name].css`
-      },
-    },
+    emptyOutDir: true
   },
+  server: {
+    port: 5173,
+
+  }
 });
