@@ -124,6 +124,8 @@ SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 SUPABASE_STORAGE_BUCKET = 'media'
 MEDIA_URL = f"{SUPABASE_URL}/storage/v1/object/public/{SUPABASE_STORAGE_BUCKET}/"
 
+STATIC_URL = 'static/'
+
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
 
@@ -189,5 +191,3 @@ REST_KNOX = {
     'TOKEN_LIMIT_PER_USER': None,
     'AUTO_REFRESH': False,
 }
-
-LOGIN_URL = '/account/login'
