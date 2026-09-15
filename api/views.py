@@ -6,7 +6,6 @@ from rest_framework import permissions
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.decorators import APIView
 from rest_framework.response import Response
-from .serializers.notes import NotesheetSerializer
 from knox.views import LoginView as KnoxLoginView
 
 from notesheet_board.models import Notesheet
@@ -15,12 +14,6 @@ from notesheet_board.models import Notesheet
 class APIOverview(APIView):
     def get(self, _):
         return Response("API BASE POINT")
-
-class GetAllNotesheets(APIView):
-    def get(self, _):
-        notesheets = Notesheet.objects.all()
-        serializer = NotesheetSerializer(notesheets, many=True)
-        return Response(serializer.data)
 
 class Login(KnoxLoginView):
     permission_classes = [permissions.AllowAny]
