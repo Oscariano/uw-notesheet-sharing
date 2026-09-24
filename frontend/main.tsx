@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client';
 import Home from '@/pages/home/Home';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import '@/styles/style.css'
-import DashboardPage from './pages/dashboard/DashboardPage';
+import NoteView from './pages/notesheet_view/NotesheetView';
 
 import { AuthProvider } from '@/lib/context/AuthContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
@@ -18,7 +18,7 @@ ReactDOM.createRoot(root).render(
                 <Route path='/login' element={<Home/ >} />
 
                 <Route element={<ProtectedRoute />}>
-                    <Route path='/dashboard' element={<DashboardPage/ >} />
+                    <Route path='/notesheet/:notesheet_id' element={<NoteView/ >} />
                 </Route>
             </Routes>
         </BrowserRouter>

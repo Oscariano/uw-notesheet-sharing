@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Sidebar from '@/components/ui/Sidebar';
-import Header from '@/pages/home/components/Header';
+import Header from '@/components/ui/Header';
 import Card from '@/pages/home/components/Card';
 import { tabs, DEFAULT_TAB_ID, type TabId } from '@/pages/home/types/tabs';
 import { type Note } from './types/note';
@@ -13,7 +13,7 @@ export default function Home() {
   const activeTab = tabs.find((tab) => tab.id === activeTabId) ?? tabs[0];
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/notesheets/?format=json')
+    fetch('http://localhost:8000/api/notesheet/?format=json')
       .then((res) => {
         if (!res.ok) throw new Error('Failed to load note');
         return res.json();
@@ -22,7 +22,7 @@ export default function Home() {
       .catch((err) => {
         console.error(err)
       });
-  });
+  }, []);
 
   return (
     <main className="flex flex-col min-h-screen">

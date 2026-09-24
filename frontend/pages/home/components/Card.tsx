@@ -1,19 +1,24 @@
 import { type Note } from '@/pages/home/types/note';
 import { useState } from 'react';
 import StarIcon from '~icons/akar-icons/star';
+import { useNavigate } from 'react-router';
 
 export default function Card({note}:{note: Note}) {
   
+  const navigate = useNavigate();
+
   const [savedCount, setSavedCount] = useState(note.saved_count)
+
+
 
   function addSavedCount() {
     setSavedCount(savedCount + 1);
-
   }
 
   return (
     <>
-      <article className="border-2 border-border w-full aspect-square flex flex-col bg-card text-foreground">
+      <article className="border-2 border-border w-full aspect-square flex flex-col bg-card text-foreground"
+      onClick={() => navigate(`/notesheet/${note.id}`)}>
         <img src={note.image_urls[0]} alt={note.title} className='w-full h-full object-cover border-border border-b-2' />
         <div className='p-4'>
           <h3 className='text-2xl'>{note.title}</h3>
