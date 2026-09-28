@@ -28,7 +28,7 @@ export default function Header({expandSidebar, onCloseSidebar}: HeaderProps) {
         </div>
         <form action="" className="w-full border-[0.15rem] border-border flex items-center px-2 bg-background focus-within:border-primary transition-colors">
           <SearchIcon style={{fontSize: "0.8rem"}}/>
-          <input type="text" placeholder="Search by class, title, or topic..." className="indent-2 w-full box-border h-full text-md text-foreground focus:outline-none focus:border-lilac placeholder:text-mute-foreground"/>
+          <input type="text" placeholder="Search by class, title, or topic..." className="indent-2 w-full box-border h-full text-md text-foreground focus:outline-none focus:border-lilac placeholder:text-mute-foreground border-none p-0 focus:ring-0 bg-transparent"/>
         </form>
         <div>
           <SettingsAdjustIcon style={{fontSize: "2rem", padding: "0.5rem", border: "solid 0.15rem var(--color-border)"}}/>
