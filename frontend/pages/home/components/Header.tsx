@@ -8,6 +8,17 @@ interface HeaderProps {
   onCloseSidebar: (expandSidebar: boolean) => void;
 }
 
+function openUploadModal() {
+  const uploadModal = document.getElementById('upload-modal');
+  if (uploadModal) {
+    uploadModal.classList.toggle('hidden');
+  }
+}
+
+function uploadNotesheet() {
+
+}
+
 export default function Header({expandSidebar, onCloseSidebar}: HeaderProps) {
   return (
     <>
@@ -23,7 +34,22 @@ export default function Header({expandSidebar, onCloseSidebar}: HeaderProps) {
           <SettingsAdjustIcon style={{fontSize: "2rem", padding: "0.5rem", border: "solid 0.15rem var(--color-border)"}}/>
         </div>
         <div>
-          <UploadIcon style={{fontSize: "2rem", background: "#6f51a6", color: "fbf9f1", padding: "0.5rem"}}/>
+          <UploadIcon style={{fontSize: "2rem", background: "#6f51a6", color: "fbf9f1", padding: "0.5rem"}} onClick={openUploadModal}/>
+          <div id="upload-modal" className='absolute top-15 right-3 w-50 bg-muted border-border border-2 px-2 py-2 flex flex-col gap-2 shadow-md'>
+          <input 
+            type="file" 
+            id="notesheet-upload" 
+            name="notesheet-upload"
+            className="block w-full text-xs text-foreground
+              file:mr-2 file:py-1 file:px-3 file:border-1
+              file:text-xs file:font-semibold
+              file:border-accent file:text-accent text-muted-foreground 
+              file:cursor-pointer"
+          />
+            <label htmlFor="notesheet-upload">
+              <button className='w-full bg-accent text-background py-1' onClick={uploadNotesheet}>Upload Notesheet</button>
+            </label>
+          </div>
         </div>
       </section>
     </>

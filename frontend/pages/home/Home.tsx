@@ -13,7 +13,7 @@ export default function Home() {
   const activeTab = tabs.find((tab) => tab.id === activeTabId) ?? tabs[0];
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/notesheets/?format=json')
+    fetch('http://localhost:8000/api/notesheet/?format=json')
       .then((res) => {
         if (!res.ok) throw new Error('Failed to load note');
         return res.json();
