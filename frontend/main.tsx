@@ -6,6 +6,7 @@ import NoteView from './pages/notesheet_view/NotesheetView';
 
 import { AuthProvider } from '@/lib/context/AuthContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
+import UploadNotesheet from './pages/upload_notesheet/UploadNotesheet';
 
 const root = document.getElementById('root');
 if (!root) throw new Error('Mount point #root not found in home.html');
@@ -20,6 +21,7 @@ ReactDOM.createRoot(root).render(
                 <Route element={<ProtectedRoute />}>
                     <Route path='/notesheet/:notesheet_id' element={<NoteView/ >} />
                 </Route>
+                <Route path='/upload' element={<UploadNotesheet />} />
             </Routes>
         </BrowserRouter>
     </ AuthProvider>

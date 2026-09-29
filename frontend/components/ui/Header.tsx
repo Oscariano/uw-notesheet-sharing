@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import MenuIcon from '~icons/boxicons/menu';
 import SettingsAdjustIcon from '~icons/carbon/settings-adjust';
 import UploadIcon from '~icons/icomoon-free/upload';
@@ -15,11 +17,15 @@ function openUploadModal() {
   }
 }
 
-function uploadNotesheet() {
-
-}
-
 export default function Header({expandSidebar, onCloseSidebar}: HeaderProps) {
+  const navigate = useNavigate();
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+
+  function uploadNotesheet() {
+    if (selectedFiles.length === 0) return;
+    navigate('/upload', { state: { files: selectedFiles } });
+  }
+
   return (
     <>
       <section className="w-full border-b-2 border-border flex p-3 gap-2 fixed bg-card">
@@ -35,20 +41,28 @@ export default function Header({expandSidebar, onCloseSidebar}: HeaderProps) {
         </div>
         <div>
           <UploadIcon style={{fontSize: "2rem", background: "#6f51a6", color: "fbf9f1", padding: "0.5rem"}} onClick={openUploadModal}/>
-          <div id="upload-modal" className='absolute top-15 right-3 w-50 bg-muted border-border border-2 px-2 py-2 flex flex-col gap-2 shadow-md'>
+          <div id="upload-modal" className='absolute top-15 right-3 w-50 bg-muted border-border border-2 px-2 py-2 flex flex-col gap-2 shadow-md hidden'>
           <input 
             type="file" 
             id="notesheet-upload" 
             name="notesheet-upload"
+            accept="image/*"
+            multiple
+            onChange={(e) => setSelectedFiles(Array.from(e.target.files ?? []))}
             className="block w-full text-xs text-foreground
               file:mr-2 file:py-1 file:px-3 file:border-1
               file:text-xs file:font-semibold
               file:border-accent file:text-accent text-muted-foreground 
               file:cursor-pointer"
           />
-            <label htmlFor="notesheet-upload">
-              <button className='w-full bg-accent text-background py-1' onClick={uploadNotesheet}>Upload Notesheet</button>
-            </label>
+            <button
+              type="button"
+              className='w-full bg-accent text-background py-1 disabled:bg-muted-foreground disabled:cursor-not-allowed'
+              onClick={uploadNotesheet}
+              disabled={selectedFiles.length === 0}
+            >
+              Upload Notesheet
+            </button>
           </div>
         </div>
       </section>
