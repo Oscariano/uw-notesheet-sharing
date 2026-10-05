@@ -7,6 +7,7 @@ import NoteView from './pages/notesheet_view/NotesheetView';
 import { AuthProvider } from '@/lib/context/AuthContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import UploadNotesheet from './pages/upload_notesheet/UploadNotesheet';
+import LoginSignUp from './pages/login_sign_up/LoginSignUp';
 
 const root = document.getElementById('root');
 if (!root) throw new Error('Mount point #root not found in home.html');
@@ -16,7 +17,7 @@ ReactDOM.createRoot(root).render(
         <BrowserRouter>
             <Routes>
                 <Route index element={<Home/ >} />
-                <Route path='/login' element={<Home/ >} />
+                <Route path='/login' element={<LoginSignUp />} />
 
                 <Route element={<ProtectedRoute />}>
                     <Route path='/notesheet/:notesheet_id' element={<NoteView/ >} />

@@ -10,7 +10,6 @@ export default function Card({note}:{note: Note}) {
   const [savedCount, setSavedCount] = useState(note.saved_count)
 
 
-
   function addSavedCount() {
     setSavedCount(savedCount + 1);
   }

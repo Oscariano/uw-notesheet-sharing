@@ -2,9 +2,15 @@ import {createContext, useContext, useState, type ReactNode} from "react";
 
 interface AuthContextType {
   token: string | null;
+  user: AuthUser | null;
   isAuthenticated: boolean;
   login: (newToken: string) => void;
   logout: () => void;
+}
+
+interface AuthUser {
+    username: string;
+    avatarUrl: string | null;
 }
 
 interface AuthProviderProps {
@@ -15,6 +21,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({children}: AuthProviderProps) => {
     const [token, setToken] = useState(localStorage.getItem("knox_token"));
+    const [user, setUser] = useState<AuthUser | null>(null);
 
     const login = (newToken: string) => {
         localStorage.setItem('knox_token', newToken);
@@ -27,7 +34,7 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
     }
 
     return (
-        <AuthContext.Provider value={{token, isAuthenticated: !!token, login, logout}}>
+        <AuthContext.Provider value={{token, user, isAuthenticated: !!token, login, logout}}>
             {children}
         </AuthContext.Provider>
     )

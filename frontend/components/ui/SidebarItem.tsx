@@ -9,9 +9,9 @@ interface SidebarItemProps {
 
 export default function SidebarItem({ label, isActive, Icon, onClick }: SidebarItemProps) {
   const base =
-    'px-3 py-2 text-left transition-colors w-full flex gap-2 items-center text-md ';
+    'px-4 py-3 text-left transition-colors w-full flex gap-4 items-center text-md ';
   const state = isActive
-    ? 'bg-[#fbf9f1] text-[#3b362f] border-l-4 border-[#6f51a6]'
+    ? 'bg-primary-foreground text-[#3b362f] border-l-4 border-[#6f51a6]'
     : 'text-[#8a8072] hover:bg-slate-100';
   const iconColor = isActive
     ? '#6f51a6'
