@@ -6,6 +6,8 @@ from django.conf import settings
 class Notesheet(models.Model):
     title = models.CharField(max_length=64)
     description = models.CharField(max_length=500)
+    course = models.CharField(max_length=64, blank=True, default='')
+    exam_type = models.CharField(max_length=16, blank=True, default='')
     year = models.PositiveSmallIntegerField(default=settings.CURRENT_YEAR)
     quarter = models.CharField(max_length=8, default=settings.CURRENT_QUARTER)
     view_count = models.PositiveIntegerField(default=0)
